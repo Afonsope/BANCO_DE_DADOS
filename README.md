@@ -63,8 +63,6 @@ Cada pasta representa uma atividade ou conteúdo específico da disciplina.
 
 💻 Interessado em **Desenvolvimento, Dados e Tecnologia**
 
-🔗 LinkedIn: *(adicione aqui seu LinkedIn)*
-
 ---
 
 ⭐ Este repositório faz parte do meu processo de aprendizado na área de tecnologia.
