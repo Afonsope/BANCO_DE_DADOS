@@ -145,3 +145,5 @@ SP_HELP vendedores
 SP_HELP categorias
 SP_HELP produtos
 SP_HELP itens_pedidos
+
+SELECT * FROM SYS.TABLES
