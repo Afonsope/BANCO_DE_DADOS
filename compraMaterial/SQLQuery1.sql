@@ -138,3 +138,10 @@ SELECT * FROM categorias
 SELECT * FROM produtos
 SELECT * FROM pedidos
 SELECT * FROM itens_pedidos
+
+SP_HELP pessoas
+SP_HELP clientes
+SP_HELP vendedores
+SP_HELP categorias
+SP_HELP produtos
+SP_HELP itens_pedidos
