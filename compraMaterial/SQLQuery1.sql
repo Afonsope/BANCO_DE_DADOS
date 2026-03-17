@@ -73,6 +73,24 @@ CREATE TABLE produtos(
 );
 GO
 
+CREATE TABLE itens_pedidos(
+	nr					INT				NOT NULL,
+	data				DATETIME		NOT NULL	DEFAULT	GETDATE(),
+	total				DECIMAL(10,2)		NULL	DEFAULT 0,
+	status				INT					NULL	DEFAULT 1,
+	cliente_codigo		INT				NOT NULL,
+	vendedor_codigo		INT				NOT NULL
+
+	--Restrições --
+	CONSTRAINT pk_pedidos PRIMARY KEY(nr),
+	CONSTRAINT ck_pedidos_data CHECK(data >= GETDATE()),
+	CONSTRAINT ck_pedidos_total CHECK(total >= 0),
+	CONSTRAINT ck_pedidos_status CHECK(status between 1 and 7),
+	CONSTRAINT fk_pedidos_clientes FOREIGN KEY(cliente_codigo) REFERENCES clientes(pessoa_codigo),
+	CONSTRAINT fk_pedidos_vendedores FOREIGN KEY(vendedor_codigo) REFERENCES vendedores(pessoa_codigo) 
+);
+GO
+
 -- inserts --
 
 INSERT INTO pessoas VALUES ('Batman', '1010', 1)
