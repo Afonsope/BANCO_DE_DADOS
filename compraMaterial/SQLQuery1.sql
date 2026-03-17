@@ -139,6 +139,10 @@ SELECT * FROM produtos
 SELECT * FROM pedidos
 SELECT * FROM itens_pedidos
 
+SELECT *, qtd_vendida * preco_unitario Valor_Item FROM itens_pedidos WHERE pedido_nr=1
+
+SELECT sum(qtd_vendida * preco_unitario) Valor_Item FROM itens_pedidos WHERE pedido_nr=1
+
 SP_HELP pessoas
 SP_HELP clientes
 SP_HELP vendedores
