@@ -143,6 +143,14 @@ SELECT *, qtd_vendida * preco_unitario Valor_Item FROM itens_pedidos WHERE pedid
 
 SELECT sum(qtd_vendida * preco_unitario) Valor_Item FROM itens_pedidos WHERE pedido_nr=1
 
+	
+UPDATE pedidos SET total = 2475 WHERE nr = 1
+SELECT * FROM pedidos
+UPDATE produtos SET estoque = estoque - 40 WHERE codigo = 1
+UPDATE produtos SET estoque = estoque - 15 WHERE codigo = 4
+UPDATE produtos SET estoque = estoque - 20 WHERE codigo = 5
+SELECT * FROM produtos
+
 SP_HELP pessoas
 SP_HELP clientes
 SP_HELP vendedores
