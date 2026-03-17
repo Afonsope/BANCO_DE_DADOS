@@ -73,8 +73,8 @@ CREATE TABLE produtos(
 );
 GO
 
-CREATE TABLE itens_pedidos(
-	nr					INT				NOT NULL,
+CREATE TABLE pedidos(
+	nr					INT				NOT NULL	IDENTITY,
 	data				DATETIME		NOT NULL	DEFAULT	GETDATE(),
 	total				DECIMAL(10,2)		NULL	DEFAULT 0,
 	status				INT					NULL	DEFAULT 1,
@@ -88,6 +88,22 @@ CREATE TABLE itens_pedidos(
 	CONSTRAINT ck_pedidos_status CHECK(status between 1 and 7),
 	CONSTRAINT fk_pedidos_clientes FOREIGN KEY(cliente_codigo) REFERENCES clientes(pessoa_codigo),
 	CONSTRAINT fk_pedidos_vendedores FOREIGN KEY(vendedor_codigo) REFERENCES vendedores(pessoa_codigo) 
+);
+GO
+
+CREATE TABLE itens_pedidos(
+	pedido_nr		INT				NOT NULL,
+	produto_codigo	INT				NOT NULL,
+	qtd_vendida		INT				NOT NULL,
+	preco_unitario	DECIMAL(10,2)	NOT NULL,
+
+	--Restrições--
+
+	CONSTRAINT pk_itens				PRIMARY KEY(pedido_nr, produto_codigo),
+	CONSTRAINT fk_itens_pedidos		FOREIGN KEY (pedido_nr) REFERENCES pedidos(nr),
+	CONSTRAINT fk_itens_produtos	FOREIGN KEY (produto_codigo) REFERENCES produtos(codigo),
+	CONSTRAINT ck_itens_qtd			CHECK (qtd_vendida > 0),
+	CONSTRAINT ck_itens_preco		CHECK(preco_unitario > 0)
 );
 GO
 
@@ -105,7 +121,7 @@ INSERT INTO clientes (pessoa_codigo, renda) VALUES (5, 1501)
 
 INSERT INTO vendedores VALUES (2, 3000), (4, 3000)
 
-INSERT INTO categorias VALUES ('Lápis'), ('Canetas'), ('Cadernos');
+INSERT INTO categorias VALUES ('Lápis'), ('Canetas'), ('Cadernos')
 
 INSERT INTO produtos values	('Lápis Preto Nr. 2', 2, 100, 1, 1),
 							('Caneta Azul', 3, 500, 1, 2),
@@ -113,9 +129,12 @@ INSERT INTO produtos values	('Lápis Preto Nr. 2', 2, 100, 1, 1),
 							('Caneta Vermelha', 2.5, 50, 1, 2),
 							('Caderno 5 Matérias - Barbie', 120, 30, 1, 3)
 
+INSERT INTO pedidos(cliente_codigo, vendedor_codigo)values(5, 2)
+
 SELECT * FROM pessoas
 SELECT * FROM clientes
 SELECT * FROM vendedores
 SELECT * FROM categorias
 SELECT * FROM produtos
+SELECT * FROM pedidos
 SELECT * FROM itens_pedidos
