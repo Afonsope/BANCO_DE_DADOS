@@ -118,3 +118,4 @@ SELECT * FROM clientes
 SELECT * FROM vendedores
 SELECT * FROM categorias
 SELECT * FROM produtos
+SELECT * FROM itens_pedidos
